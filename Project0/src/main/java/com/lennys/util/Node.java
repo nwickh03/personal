@@ -1,6 +1,6 @@
 package com.lennys.util;
 
-public class Node<T>  implements Comparable{
+public class Node<T extends Comparable>  implements Comparable{
     private T e;
     private Node<T> leftNode, rightNode;
 
@@ -31,6 +31,6 @@ public class Node<T>  implements Comparable{
 
     @Override
     public int compareTo(Object o) {
-        return 0;
+        return e.compareTo(o);
     }
 }

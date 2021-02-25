@@ -5,5 +5,5 @@ public enum UserType {
     Customer,
     Employee,
     Dual_User,
-    Previous_Employee;
+    Previous_Employee
 }

@@ -3,7 +3,7 @@ package com.lennys.model.people;
 import com.lennys.model.things.Car;
 import com.lennys.model.things.UserType;
 
-public class User {
+public class User implements Comparable{
 
     private String username;
     private String password;
@@ -65,5 +65,10 @@ public class User {
         this.password = password;
         this.phoneNumber = phoneNumber;
         this.email = email;
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        return 0;
     }
 }

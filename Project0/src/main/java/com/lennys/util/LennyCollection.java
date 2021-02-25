@@ -6,7 +6,7 @@ import java.util.Collection;
 import java.util.LinkedList;
 import java.util.TreeSet;
 
-public abstract class LennyCollection<T> implements Comparable{
+public abstract class LennyCollection<T extends Comparable> implements Comparable{
     private T t;
 
     protected int maxSize;

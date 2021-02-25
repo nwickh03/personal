@@ -3,7 +3,7 @@ package com.lennys.util;
 import com.lennys.model.people.User;
 import com.lennys.util.inter.LSortable;
 
-public class LennyLinkedListSet<T extends User> extends LennyCollection implements LSortable {
+public class LennyLinkedListSet<T extends Comparable> extends LennyCollection implements LSortable {
 
     private T t;
     Node<T> head, tail;
