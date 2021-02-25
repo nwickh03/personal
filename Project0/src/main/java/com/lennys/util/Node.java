@@ -15,7 +15,6 @@ public class Node<T extends Comparable>  implements Comparable{
     public Node<T> getLeftNode() { return leftNode; }
 
 
-
     public Node<T> getRightNode() { return rightNode; }
 
 
@@ -29,8 +28,9 @@ public class Node<T extends Comparable>  implements Comparable{
         this.rightNode = rightNode;
     }
 
-    @Override
+
     public int compareTo(Object o) {
         return e.compareTo(o);
     }
 }
+

@@ -1,9 +1,10 @@
 package com.lennys.model.people;
 
+import com.lennys.model.LennyDataModel;
 import com.lennys.model.things.Car;
 import com.lennys.model.things.UserType;
 
-public class User implements Comparable{
+public class User extends LennyDataModel implements Comparable{
 
     private String username;
     private String password;

@@ -25,17 +25,12 @@ public class LennyLinkedListSet<T extends Comparable> extends LennyCollection im
 
 
     @Override
-    void order() {
-
-    }
-
-    @Override
     public T get(Object o) {
         return null;
     }
 
     @Override
-    public void add(Object o) throws Exception {
+    public void add(Object o){
         innerAdd((T)o);
 
     }
@@ -43,10 +38,12 @@ public class LennyLinkedListSet<T extends Comparable> extends LennyCollection im
     private void innerAdd(T t) {
         if(head == null){
             head= new Node<T>(null,t,null);
-        }else if (tail == null){
-            tail = new Node<T>(head,t,null);
         }
 
+
+    }
+    //finds the index of
+    private int findLast() {
     }
 
     @Override
@@ -57,7 +54,8 @@ public class LennyLinkedListSet<T extends Comparable> extends LennyCollection im
     @Override
     public void sort() {
 
-    }
+
+    };
 
     @Override
     public int compareTo(Object o) {
