@@ -1,9 +1,10 @@
 package com.lennys.service;
 
 import com.lennys.model.people.User;
+import com.lennys.util.LennyLinkedListSet;
 
 public class UserService {
-
+    private static LennyLinkedListSet<User> users; // Stores a working copy of the user table   TODO: Pull from DB
 
     public boolean doesUsernameExist(String username){
         // O(n) time complexity O(1) space complexity
@@ -16,8 +17,9 @@ public class UserService {
 
 
     // TODO: Ensure duplicates do not exist, while minimizing calls to doesUsernameExist method.
-    public boolean makeUser(String username, String password, String phoneNumber, String email) {
+    public void makeUser(String username, String password, String phoneNumber, String email) {
 
-        return false;
+        User newUser = new User(username,password,phoneNumber,email);
+
     }
 }
