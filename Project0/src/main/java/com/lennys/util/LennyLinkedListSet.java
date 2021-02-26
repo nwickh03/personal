@@ -1,6 +1,5 @@
 package com.lennys.util;
 
-import com.lennys.model.people.User;
 import com.lennys.util.inter.LSortable;
 
 public class LennyLinkedListSet<T extends Comparable> extends LennyCollection implements LSortable {
@@ -31,19 +30,37 @@ public class LennyLinkedListSet<T extends Comparable> extends LennyCollection im
 
     @Override
     public void add(Object o){
-        innerAdd((T)o);
+        if(head == null){
+            head= new Node<T>(null,(T)o,null);
+            tail = head;
+            currentSize++;
+            return;
+        }
+        innerAdd(head,new Node<T>(null,(T)o,null));
 
     }
+//TODO: make duplicate add throw error (SET contract)
+    private void innerAdd(Node<T> left, Node<T> addedElement) {
+        if(left.compareTo(addedElement) < 0){
+           if(left.getRightNode() == null){
+               left.setRightNode(addedElement);
+               addedElement.setLeftNode(left);
 
-    private void innerAdd(T t) {
-        if(head == null){
-            head= new Node<T>(null,t,null);
+               currentSize++;
+               tail = addedElement;
+           }else innerAdd(left.getRightNode(),addedElement);
+
+
+        }else if(left.compareTo(addedElement) > 0){
+            addedElement.setLeftNode(left.getLeftNode());
+            addedElement.getLeftNode().setRightNode(addedElement);
+
+            addedElement.setRightNode(left);
+            addedElement.getRightNode().setLeftNode(addedElement);
+            currentSize++;
         }
 
 
-    }
-    //finds the index of
-    private int findLast() {
     }
 
     @Override

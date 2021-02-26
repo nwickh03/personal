@@ -17,6 +17,13 @@ public class Node<T extends Comparable>  implements Comparable{
 
     public Node<T> getRightNode() { return rightNode; }
 
+    public void setLeftNode(Node<T> leftNode) {
+        this.leftNode = leftNode;
+    }
+
+    public void setRightNode(Node<T> rightNode) {
+        this.rightNode = rightNode;
+    }
 
     public Node(T n) {
         this.e = n;
@@ -30,7 +37,7 @@ public class Node<T extends Comparable>  implements Comparable{
 
 
     public int compareTo(Object o) {
-        return e.compareTo(o);
+        return e.compareTo(((Node<T>)o).e);
     }
 }
 

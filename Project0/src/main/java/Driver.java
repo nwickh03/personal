@@ -13,9 +13,17 @@ public class Driver {
         System.out.println("***WELCOME TO LENNY'S LEMON LOT***");
         LennyLinkedListSet<User> lll = new LennyLinkedListSet<User>();
         User a = new User("a","a","a", "a");
-        User b = new User("c","a","a", "a");
-        a = lll.get(b);
-        a.getUsername();
+        User b = new User("b","a","a", "a");
+        User c = new User("c","a","a", "a");
+
+        lll.add(a);
+        lll.add(c);
+        lll.add(b);
+        if(a.compareTo(b) < 0) System.out.println("a.compareTo(b) < 0");
+        if(a.compareTo(b) > 0) System.out.println("a.compareTo(b) > 0");
+        if("a".compareTo("c") < 0) System.out.println("a.compareTo(C < 0");
+        if("a".compareTo("c") > 0) System.out.println("a.compareTo(C > 0");
+        "a".compareTo("c");
         boolean inMenu = true;
         do{
             System.out.println("Please Select:");

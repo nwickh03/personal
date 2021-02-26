@@ -70,6 +70,6 @@ public class User extends LennyDataModel implements Comparable{
 
     @Override
     public int compareTo(Object o) {
-        return 0;
+        return this.username.compareTo(((User)o).getUsername());
     }
 }
