@@ -2,12 +2,12 @@ package com.lennys.model.places;
 
 import com.lennys.model.LennyDataModel;
 import com.lennys.model.things.Car;
-import com.lennys.util.LennyLinkedListSet;
+import com.lennys.util.LennyLinkedTreeSet;
 
-public class Lot extends LennyDataModel {
+public class Lot extends LennyDataModel implements Comparable<Lot> {
     private String lotName;
-    private LennyLinkedListSet<Car> lot;
-    private int currentSize = 0;
+    private LennyLinkedTreeSet<Car> lot;
+    private int currentSize;
 
     public boolean add(Car car){
         if(currentSize+1 <= lot.size()){
@@ -18,14 +18,14 @@ public class Lot extends LennyDataModel {
         return false;
     }
 
-    public Lot(LennyLinkedListSet<Car> lot, int size, String name) {
+    public Lot(LennyLinkedTreeSet<Car> lot, int size, String name) {
         this.lot = lot;
         this.currentSize = size;
         this.lotName = name;
     }
 
     @Override
-    public int compareTo(Object o) {
-        return this.lotName.compareTo(((Lot)o).lotName);
+    public int compareTo(Lot l) {
+        return this.lotName.compareTo(l.lotName);
     }
 }

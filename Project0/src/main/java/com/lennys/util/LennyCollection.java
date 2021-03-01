@@ -2,7 +2,7 @@ package com.lennys.util;
 
 import com.lennys.exception.DuplicateEntryException;
 
-public abstract class LennyCollection<T> implements Comparable{
+public abstract class LennyCollection<T>{
     private T t;
 
     protected int maxSize;
@@ -11,13 +11,13 @@ public abstract class LennyCollection<T> implements Comparable{
 
     public abstract int size();
 
-    abstract <T> boolean Contains(T t);
+    abstract boolean contains(T t);
 
-    public abstract <T> T get(T t);
+    public abstract void add(T t) throws DuplicateEntryException;
 
-    public abstract <T> void add(T t) throws Exception, DuplicateEntryException;
+    public abstract void remove(T t) throws Exception;
 
-    public abstract <T> void remove(T t) throws Exception;
+
 
 
 

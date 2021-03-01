@@ -4,7 +4,7 @@ import com.lennys.model.LennyDataModel;
 import com.lennys.model.things.Car;
 import com.lennys.model.things.UserType;
 
-public class User extends LennyDataModel implements Comparable{
+public class User extends LennyDataModel implements Comparable<User>{
 
     private String username;
     private String password;
@@ -68,8 +68,9 @@ public class User extends LennyDataModel implements Comparable{
         this.email = email;
     }
 
+
     @Override
-    public int compareTo(Object o) {
-        return this.username.compareTo(((User)o).getUsername());
+    public int compareTo(User o) {
+        return this.username.compareTo(o.getUsername());
     }
 }

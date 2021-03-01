@@ -2,7 +2,7 @@ import com.lennys.model.people.User;
 import com.lennys.ui.CustomerLoginMenu;
 import com.lennys.ui.EmployeeLoginMenu;
 import com.lennys.ui.RegistrationMenu;
-import com.lennys.util.LennyLinkedListSet;
+import com.lennys.util.LennyLinkedTreeSet;
 
 import java.util.Scanner;
 
@@ -11,7 +11,7 @@ public class Driver {
 
         Scanner scan = new Scanner(System.in);
         System.out.println("***WELCOME TO LENNY'S LEMON LOT***");
-        LennyLinkedListSet<User> lll = new LennyLinkedListSet<User>();
+        LennyLinkedTreeSet<User> lll = new LennyLinkedTreeSet<>();
         User a = new User("a","a","a", "a");
         User b = new User("b","a","a", "a");
         User c = new User("c","a","a", "a");

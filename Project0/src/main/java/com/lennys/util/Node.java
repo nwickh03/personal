@@ -1,6 +1,6 @@
 package com.lennys.util;
 
-public class Node<T extends Comparable>  implements Comparable{
+public class Node<T extends Comparable<T>>  implements Comparable<T>{
     private T e;
     private Node<T> leftNode, rightNode;
 
@@ -36,8 +36,8 @@ public class Node<T extends Comparable>  implements Comparable{
     }
 
 
-    public int compareTo(Object o) {
-        return e.compareTo(((Node<T>)o).e);
+    public int compareTo(T t) {
+        return e.compareTo(t);
     }
 }
 

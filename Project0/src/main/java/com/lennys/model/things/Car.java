@@ -2,7 +2,9 @@ package com.lennys.model.things;
 
 import com.lennys.model.LennyDataModel;
 
-public class Car<T> extends LennyDataModel<T> {
+import javax.annotation.Generated;
+
+public class Car extends LennyDataModel implements Comparable<Car> {
     private int vin, year;
     private String make, model;
 
@@ -50,15 +52,19 @@ public class Car<T> extends LennyDataModel<T> {
 
 
 
+
     @Override
-    public int compareTo(Object o) {
-        return this.vin -((Car)o).getVin();
+    public int compareTo(Car c) {
+        return this.vin -((c).getVin());
     }
 }
 
 
- class Offer extends LennyDataModel {
-     private int total, term, remaining, vin;
+ class Offer extends LennyDataModel implements Comparable<Offer> {
+     private int total, term, remaining;
+
+     @Generated()
+     private int vin;
 
 
      public int getTotal() {
@@ -85,8 +91,9 @@ public class Car<T> extends LennyDataModel<T> {
          this.remaining = remaining;
      }
 
+
      @Override
-     public int compareTo(Object o) {
+     public int compareTo(Offer o) {
          if (this.total == ((Offer) o).total) {
              if(this.term == ((Offer) o).term){
                  if(this.vin == ((Offer)o).vin) return 0;

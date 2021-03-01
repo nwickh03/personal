@@ -1,10 +1,10 @@
 package com.lennys.service;
 
 import com.lennys.model.people.User;
-import com.lennys.util.LennyLinkedListSet;
+import com.lennys.util.LennyLinkedTreeSet;
 
 public class UserService {
-    private static LennyLinkedListSet<User> users; // Stores a working copy of the user table   TODO: Pull from DB
+    private static LennyLinkedTreeSet<User> users = new LennyLinkedTreeSet<>(); // Stores a working copy of the user table   TODO: Pull from DB
 
     public boolean doesUsernameExist(String username){
         // O(n) time complexity O(1) space complexity
