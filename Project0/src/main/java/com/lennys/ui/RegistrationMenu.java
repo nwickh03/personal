@@ -1,5 +1,6 @@
 package com.lennys.ui;
 
+import com.lennys.exception.DBException;
 import com.lennys.exception.DuplicateEntryException;
 import com.lennys.service.UserService;
 
@@ -10,14 +11,13 @@ public class RegistrationMenu extends AbstractMenu{
     @Override
     public void showMenu(Scanner scan) {
 
-        UserService us = new UserService();
         System.out.println("***New User Registration");
         String username = "";
         // hey something is wrong
         do{
             System.out.println("provide username");
             username = scan.nextLine();
-            if(us.doesUsernameExist(username)){
+            if(UserService.getInstance().doesUsernameExist(username)){
                 System.out.println("username already in use");
                 continue;
             }else break;
@@ -31,9 +31,9 @@ public class RegistrationMenu extends AbstractMenu{
         System.out.println("provide email");
         String email = scan.nextLine();
         try{
-            us.makeUser(username, password, phoneNumber, email);
-            System.out.println("successfully made" + username);
-        } catch (DuplicateEntryException e) {
+            UserService.getInstance().register(username, password, phoneNumber, email);
+            System.out.println("successfully made " + username);
+        } catch (DBException | DuplicateEntryException e) {
             System.out.println("registration failed");
         }
 

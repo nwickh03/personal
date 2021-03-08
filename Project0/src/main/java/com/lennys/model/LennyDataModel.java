@@ -2,6 +2,6 @@ package com.lennys.model;
 
 import java.io.Serializable;
 
-public abstract class LennyDataModel implements Serializable {
+public abstract class LennyDataModel{
 
 }

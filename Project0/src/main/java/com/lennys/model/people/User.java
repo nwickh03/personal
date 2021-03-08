@@ -1,8 +1,11 @@
 package com.lennys.model.people;
 
+import com.azul.crs.com.fasterxml.jackson.databind.exc.InvalidTypeIdException;
 import com.lennys.model.LennyDataModel;
 import com.lennys.model.things.Car;
 import com.lennys.model.things.UserType;
+
+import java.security.InvalidParameterException;
 
 public class User extends LennyDataModel implements Comparable<User>{
 
@@ -66,6 +69,25 @@ public class User extends LennyDataModel implements Comparable<User>{
         this.password = password;
         this.phoneNumber = phoneNumber;
         this.email = email;
+        this.type = UserType.Customer;
+    }
+    public User(String username, String password, String phoneNumber, String email, int type) {
+        this.username = username;
+        this.password = password;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+        switch(type){
+            case 0: this.type = UserType.Customer;
+                break;
+            case 1: this.type = UserType.Employee;
+                break;
+            case 2: this.type = UserType.Admin;
+            break;
+            default:throw new InvalidParameterException();
+
+
+        }
+
     }
 
 

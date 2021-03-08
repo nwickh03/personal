@@ -10,6 +10,7 @@ public class LennyLinkedTreeSet<T extends Comparable<T>> extends LennyCollection
     Node<T> root;
     private int currentSize = 0;
 
+
     public boolean isEmpty() {
         return root == null;
     }
@@ -20,12 +21,35 @@ public class LennyLinkedTreeSet<T extends Comparable<T>> extends LennyCollection
         return currentSize;
     }
 
+
     @Override
     public boolean contains(T e) {
 
         if (isEmpty()) return false;
         return innerContain(e, root);
 
+
+
+    }
+    public T getByIntKey(int k){
+       if(isEmpty()) return null;
+
+        return innerGetByInt(k, root);
+    }
+
+    private T innerGetByInt(int k, Node<T> root) {
+        if(null == root) return null;
+
+        if(root.getE().equals(k)) {
+            return root.getE();
+        }
+        if(!(root.left() == null)){
+            return innerGetByInt(k,root.left());
+        }
+        if(!(root.right() == null)){
+            return innerGetByInt(k,root.right());
+        }
+         return null;
 
 
     }
@@ -61,20 +85,20 @@ public class LennyLinkedTreeSet<T extends Comparable<T>> extends LennyCollection
 
         if(curHead.compareTo(addedElement.getE()) > 0){
 
-           if(curHead.getLeftNode() == null){
+           if(curHead.left() == null){
                curHead.setLeftNode(addedElement);
                currentSize++;
 
-           }else innerAdd(curHead.getLeftNode(),addedElement);
+           }else innerAdd(curHead.left(),addedElement);
 
 
         }else if(curHead.compareTo(addedElement.getE()) < 0){
 
-            if(curHead.getRightNode() == null){
+            if(curHead.right() == null){
                 curHead.setRightNode(addedElement);
                 currentSize++;
 
-            }else innerAdd(curHead.getRightNode(),addedElement);
+            }else innerAdd(curHead.right(),addedElement);
 
         }else {
             throw new DuplicateEntryException("Addition failed");
@@ -97,33 +121,33 @@ public class LennyLinkedTreeSet<T extends Comparable<T>> extends LennyCollection
 
         if (curHead.compareTo(node.getE()) < 0) {
 
-             innerRemove(curHead.getRightNode(), node);
+             innerRemove(curHead.right(), node);
         } else if (curHead.compareTo(node.getE()) > 0) {
 
-            innerRemove(curHead.getLeftNode(), node);
+            innerRemove(curHead.left(), node);
         }
 
 
 
-        else if (curHead.getLeftNode()==null && curHead.getRightNode() == null){
+        else if (curHead.left()==null && curHead.right() == null){
             curHead = null;
             currentSize--;
 
         }
-        else if (curHead.getLeftNode()==null && !(curHead.getRightNode() == null)){
+        else if (curHead.left()==null && !(curHead.right() == null)){
 
-            curHead = curHead.getRightNode();
+            curHead = curHead.right();
             currentSize--;
 
         }
-        else if (!(curHead.getLeftNode()==null) && curHead.getRightNode() == null){
+        else if (!(curHead.left()==null) && curHead.right() == null){
 
-            curHead = curHead.getLeftNode();
+            curHead = curHead.left();
             currentSize--;
 
         }
-        else if (!(curHead.getLeftNode()==null) && !(curHead.getRightNode() == null)){
-            Node<T> localMin = innerMin(curHead.getRightNode());
+        else if (!(curHead.left()==null) && !(curHead.right() == null)){
+            Node<T> localMin = innerMin(curHead.right());
 
             curHead.setE(localMin.getE());
             innerRemove(localMin,curHead);
@@ -138,9 +162,32 @@ public class LennyLinkedTreeSet<T extends Comparable<T>> extends LennyCollection
 
         if (null == root) throw new NoSuchElementException("Empty Collection");
 
-        if(null == root.getLeftNode()) return root;
-        else return innerMin(root.getLeftNode());
+        if(null == root.left()) return root;
+        else return innerMin(root.left());
 
     }
 
+    //ToDo: reinvent ArrayList
+//    private T[] toArray(){
+//        int index;
+//        T[] result = new T[3];
+//       return arrayTraverse(root);
+//    }
+
+    public void inOrderPrint(){
+        innerInOrderPrint(root);
+    }
+
+    public void innerInOrderPrint(Node<T> root) {
+        if(!(root.left()==null)){
+            innerInOrderPrint(root.left());
+        }
+        System.out.println(root.getE());
+        if(!(root.right()==null)){
+            innerInOrderPrint(root.right());
+        }
+    }
+
 }
+
+

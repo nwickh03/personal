@@ -11,15 +11,14 @@ public class MainMenu extends AbstractMenu {
             System.out.println("Please Select:");
             System.out.println("[L]ogin");
             System.out.println("[R]egister");
-            System.out.println("[E]mployee Menu");
             System.out.println("E[x]it");
             String answer = scan.nextLine();
             if(answer.equalsIgnoreCase("L")){
-                (new CustomerLoginMenu()).showMenu(scan);
+                (new LoginMenu()).showMenu(scan);
             }else if(answer.equalsIgnoreCase("R")){
                 (new RegistrationMenu()).showMenu(scan);
-            }else if(answer.equalsIgnoreCase("E")){
-                ((new EmployeeLoginMenu())).showMenu(scan);
+            }else if(answer.equalsIgnoreCase("x")){
+                break;
             }
         }while (inMenu);
     }

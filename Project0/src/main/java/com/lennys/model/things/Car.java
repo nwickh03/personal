@@ -3,36 +3,62 @@ package com.lennys.model.things;
 import com.lennys.model.LennyDataModel;
 
 import javax.annotation.Generated;
+import java.util.Objects;
 
 public class Car extends LennyDataModel implements Comparable<Car> {
-    private int vin, year;
+    private String owner;
+    private Integer vin, year, pid;
     private String make, model;
 
 
     public Car(int vin, int year, String make, String model) {
+        this.owner = "lenny";
         this.vin = vin;
         this.year = year;
         this.make = make;
         this.model = model;
+        this.pid = null;
 
     }
-
-
-    public int getVin() {
-        return vin;
-    }
-
-    public void setVin(int vin) {
+    public Car(String owner,int vin, int year, String make, String model) {
+        this.owner = owner;
         this.vin = vin;
+        this.year = year;
+        this.make = make;
+        this.model = model;
+        this.pid = null;
+
+    }
+
+    public Car(String owner,int vin, int year, String make, String model,Integer pid) {
+        this.owner = owner;
+        this.vin = vin;
+        this.year = year;
+        this.make = make;
+        this.model = model;
+        this.pid = pid;
+
+    }
+    public Car(int vin){
+        this.vin = vin;
+    }
+
+    public String getOwner() {
+        return owner;
+    }
+
+    public void setOwner(String owner) {
+        this.owner = owner;
+    }
+
+    public Integer getVin() {
+        return vin;
     }
 
     public int getYear() {
         return year;
     }
 
-    public void setYear(int year) {
-        this.year = year;
-    }
 
     public String getMake() {
         return make;
@@ -50,59 +76,45 @@ public class Car extends LennyDataModel implements Comparable<Car> {
         this.model = model;
     }
 
+    public void setVin(Integer vin) {
+        this.vin = vin;
+    }
 
+    public void setYear(Integer year) {
+        this.year = year;
+    }
 
+    public Integer getPid() {
+        return pid;
+    }
+
+    public void setPid(Integer pid) {
+        this.pid = pid;
+    }
 
     @Override
     public int compareTo(Car c) {
         return this.vin -((c).getVin());
     }
+
+    public String toString() {
+        return "Owner: " + owner + " Vin: " +vin + " Desc: " + year +" " + make +
+                " " + model;
+
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this.vin == (int)o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Car car = (Car) o;
+        return vin.equals(car.vin);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(vin);
+    }
 }
 
 
- class Offer extends LennyDataModel implements Comparable<Offer> {
-     private int total, term, remaining;
-
-     @Generated()
-     private int vin;
-
-
-     public int getTotal() {
-         return total;
-     }
-
-     public void setTotal(int total) {
-         this.total = total;
-     }
-
-     public int getTerm() {
-         return term;
-     }
-
-     public void setTerm(int term) {
-         this.term = term;
-     }
-
-     public int getRemaining() {
-         return remaining;
-     }
-
-     public void setRemaining(int remaining) {
-         this.remaining = remaining;
-     }
-
-
-     @Override
-     public int compareTo(Offer o) {
-         if (this.total == ((Offer) o).total) {
-             if(this.term == ((Offer) o).term){
-                 if(this.vin == ((Offer)o).vin) return 0;
-                 else return this.vin - ((Offer)o).vin;
-             }else{
-                 return this.term - ((Offer) o).term;
-             }
-         } else{
-             return this.total - ((Offer) o).total;
-         }
-     }
- }

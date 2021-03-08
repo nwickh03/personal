@@ -12,10 +12,10 @@ public class Node<T extends Comparable<T>>  implements Comparable<T>{
         this.e = e;
     }
 
-    public Node<T> getLeftNode() { return leftNode; }
+    public Node<T> left() { return leftNode; }
 
 
-    public Node<T> getRightNode() { return rightNode; }
+    public Node<T> right() { return rightNode; }
 
     public void setLeftNode(Node<T> leftNode) {
         this.leftNode = leftNode;
