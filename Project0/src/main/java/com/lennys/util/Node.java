@@ -1,6 +1,6 @@
 package com.lennys.util;
 
-public class Node<T extends Comparable<T>>  implements Comparable<T>{
+public class Node<T extends Comparable<T>> implements Comparable<T>{
     private T e;
     private Node<T> leftNode, rightNode;
 

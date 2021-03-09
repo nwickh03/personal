@@ -5,7 +5,7 @@ import com.lennys.model.LennyDataModel;
 public class Offer extends LennyDataModel implements Comparable<Offer> {
     private int id;
 
-    private int total;
+    private Double total;
 
     private int downPayment;
 
@@ -15,11 +15,28 @@ public class Offer extends LennyDataModel implements Comparable<Offer> {
 
     private String username;
 
-    public Offer(int total, int downPayment, int term, int vin) {
+    private OfferStatus status;
+
+    public Offer(Double total, int downPayment, int term, int vin, String username) {
         this.total = total;
         this.downPayment = downPayment;
         this.term = term;
         this.vin = vin;
+        this.username = username;
+    }
+    public Offer(int id, int vin, Double total, int downPayment, int term, String username, int status) {
+        this(total,downPayment,term,vin,username);
+        this.id = id;
+        switch (status){
+            case 0: this.status = OfferStatus.PENDING;
+                break;
+            case 1: this.status = OfferStatus.ACCEPTED;
+                break;
+            case 2: this.status = OfferStatus.REJECTED;
+                break;
+            default:
+                throw new IllegalStateException("Unexpected value: " + status);
+        }
     }
 
     public int getId() {
@@ -30,11 +47,11 @@ public class Offer extends LennyDataModel implements Comparable<Offer> {
         this.id = id;
     }
 
-    public int getTotal() {
+    public Double getTotal() {
         return total;
     }
 
-    public void setTotal(int total) {
+    public void setTotal(Double total) {
         this.total = total;
     }
 
@@ -64,7 +81,7 @@ public class Offer extends LennyDataModel implements Comparable<Offer> {
 
     @Override
     public int compareTo(Offer o) {
-        if (this.total == o.total) {
+        if (this.total.equals(o.total)) {
             if(this.term == o.term){
                 if(this.vin == o.vin) return 0;
                 else return this.vin - o.vin;
@@ -72,7 +89,22 @@ public class Offer extends LennyDataModel implements Comparable<Offer> {
                 return this.term - o.term;
             }
         } else{
-            return this.total - o.total;
+            return (int)(this.total - o.total);
         }
+    }
+
+    public int compareTo(int id){
+        return this.id - id;
+    }
+
+    @Override
+    public String toString() {
+        return "Offer Id: " + id +
+                ", vin: " + vin +
+                ", total: " + total +
+                ", downPayment: " + downPayment +
+                ", term: " + term +
+                ", username: '" + username + '\'' +
+                ", status: " + status;
     }
 }

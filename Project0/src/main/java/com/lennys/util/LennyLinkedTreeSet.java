@@ -2,9 +2,10 @@ package com.lennys.util;
 
 import com.lennys.exception.DuplicateEntryException;
 
+import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class LennyLinkedTreeSet<T extends Comparable<T>> extends LennyCollection<T>{
+public class LennyLinkedTreeSet<T extends Comparable<T>> extends LennyCollection<T> implements Iterable<T>{
 
 
     Node<T> root;
@@ -188,6 +189,64 @@ public class LennyLinkedTreeSet<T extends Comparable<T>> extends LennyCollection
         }
     }
 
+    @Override
+    public String toString() {
+        return "LennyLinkedTreeSet{" +
+                "root=" + root +
+                ", currentSize=" + currentSize +
+                '}';
+    }
+
+    @Override
+    public Iterator<T> iterator() {
+        return new LennyIterator<>(this);
+    }
+
 }
 
+class LennyIterator<T extends Comparable<T>> implements Iterator<T> {
+    int cursor, len;
+    T[] itr;
+    private static Comparable[] temp;
+    int i;
+    public LennyIterator(LennyLinkedTreeSet<T> ts) {
+        if (ts.isEmpty()) return;
 
+       temp = new Comparable[ts.size()];
+
+        itr = innerArrayify(ts.root,i);
+        cursor= 0;
+        len = 0;
+    }
+
+
+
+
+    public T[] innerArrayify(Node<T> root, int i) {
+            if(!(root.left()==null)){
+                innerArrayify(root.left(),i);
+            }
+            temp[i++] = root.getE();
+            this.i++;
+            if(!(root.right()==null)){
+                innerArrayify(root.right(),i);
+            }
+            return (T[]) temp;
+        }
+
+
+    // Checks if the next element exists
+    public boolean hasNext() {
+        return !(cursor== itr.length);
+    }
+
+    // moves the cursor/iterator to next element
+    public T next() {
+        return itr[cursor++];
+    }
+
+    // Used to remove an element. Implement only if needed
+    public void remove() {
+        // Default throws UnsupportedOperationException.
+    }
+}

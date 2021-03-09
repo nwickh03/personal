@@ -1,9 +1,18 @@
 package com.lennys.ui;
 
+import com.lennys.exception.DBException;
 import com.lennys.model.people.User;
 import com.lennys.model.things.Car;
+import com.lennys.model.things.Offer;
+import com.lennys.service.LotService;
+import com.sun.org.apache.xalan.internal.xsltc.dom.MultiValuedNodeHeapIterator;
+import org.postgresql.util.PSQLException;
 
+import java.io.IOException;
+import java.sql.SQLException;
+import java.util.InputMismatchException;
 import java.util.Scanner;
+import java.util.Stack;
 
 public class MakeOfferMenu extends AbstractMenu {
     User activeUser;
@@ -19,23 +28,24 @@ public class MakeOfferMenu extends AbstractMenu {
         for (int i = 0; i < 3; i++) {
 
 
+            try {
+                System.out.println("***Make new offer");
+                System.out.println(car.toStringSimple());
+                System.out.println("Enter total amount offered:");
+                double total = scan.nextInt();
+                scan.nextLine();
+                System.out.println("Enter desired down payment:");
+                int down = scan.nextInt();
+                scan.nextLine();
+                System.out.println("Enter desired term(months):");
+                int term = scan.nextInt();
+                scan.nextLine();
 
-            System.out.println("***Employee Menu");
-            System.out.println("Please select:");
-            System.out.println("1: view lot");
-            System.out.println("2: view payments");
-            System.out.println("3: add car");
-            System.out.println("4: remove car");
-            Integer answer = scan.nextInt();
-            scan.nextLine();
-            switch (answer){
-                case 1: new LotMenu(activeUser).showMenu(scan);
-                    break;
-                case 2: new PaymentMenu(activeUser).showMenu(scan);
-                    break;
-                case 3: new AddCarMenu().showMenu(scan);
-                    break;
-                case 4: new RemoveCarMenu().showMenu(scan);
+                LotService.getInstance().makeOffer(new Offer(total,down, term, car.getVin(), activeUser.getUsername()));
+                System.out.println("Your offer is pending.");
+                return;
+            } catch (InputMismatchException e) {
+                System.out.println("offer failed");
             }
 
 

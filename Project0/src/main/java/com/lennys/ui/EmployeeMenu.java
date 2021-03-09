@@ -27,7 +27,7 @@ public class EmployeeMenu extends AbstractMenu{
             switch (answer){
                 case 1: new LotMenu(activeUser).showMenu(scan);
                 break;
-                case 2: new PaymentMenu(activeUser).showMenu(scan);
+                case 2: new EmpPaymentMenu(activeUser).showMenu(scan);
                 break;
                 case 3: new AddCarMenu().showMenu(scan);
                 break;

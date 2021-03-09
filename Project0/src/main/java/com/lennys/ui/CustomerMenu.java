@@ -20,7 +20,7 @@ public class CustomerMenu extends AbstractMenu{
             switch (answer){
                 case 1: new LotMenu(activeUser).showMenu(scan);
                     break;
-                case 2: new PaymentMenu(activeUser).showMenu(scan);
+                case 2: new PrivateLotMenu(activeUser).showMenu(scan);
                     break;
                 default:
             }

@@ -1,6 +1,7 @@
 package com.lennys.model.things;
 
 import com.lennys.model.LennyDataModel;
+import com.lennys.service.LotService;
 
 import javax.annotation.Generated;
 import java.util.Objects;
@@ -9,6 +10,8 @@ public class Car extends LennyDataModel implements Comparable<Car> {
     private String owner;
     private Integer vin, year, pid;
     private String make, model;
+    private Payment carPayment;
+
 
 
     public Car(int vin, int year, String make, String model) {
@@ -36,7 +39,7 @@ public class Car extends LennyDataModel implements Comparable<Car> {
         this.year = year;
         this.make = make;
         this.model = model;
-        this.pid = pid;
+        carPayment = LotService.getInstance().getPayment(pid);
 
     }
     public Car(int vin){
@@ -102,6 +105,11 @@ public class Car extends LennyDataModel implements Comparable<Car> {
                 " " + model;
 
     }
+    public String toStringSimple(){
+        return " Vin: " +vin + " Desc: " + year +" " + make +
+                " " + model;
+    }
+
 
     @Override
     public boolean equals(Object o) {
@@ -111,9 +119,17 @@ public class Car extends LennyDataModel implements Comparable<Car> {
         return vin.equals(car.vin);
     }
 
+    public boolean equals(int vin){
+        return this.vin == vin;
+    }
+
     @Override
     public int hashCode() {
         return Objects.hash(vin);
+    }
+
+    public String toStringWithPayment() {
+        return toString() + "    " + carPayment.toString();
     }
 }
 

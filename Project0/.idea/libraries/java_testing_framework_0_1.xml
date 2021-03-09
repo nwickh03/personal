@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="java-testing-framework-0.1">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../../EnterpriseTestingFramework/Enterprise-Testing-Framework/java-testing-framework/target/java-testing-framework-0.1.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

@@ -103,4 +103,26 @@ public class JDBCCarDAO implements Dao<Car, Integer> {
             throw new DBException(throwables.getMessage());
         }
     }
+
+    public LennyLinkedTreeSet<Car> getCarsNotOwned() throws DBException {
+        String sql = "SELECT * " +
+                "FROM lenny.\"Car\" where \"Owner\" != ?;";
+        try(PreparedStatement ps = ConnectionUtil.getConnection().prepareStatement(sql)){
+
+            LennyLinkedTreeSet<Car> results = new LennyLinkedTreeSet<>();
+            ps.setString(1,"lenny");
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()){
+                Car car;
+                car = new Car(rs.getString(1),rs.getInt(2),
+                        rs.getInt(3),rs.getString(4),
+                        rs.getString(5),rs.getInt(6));
+
+                results.add(car);
+            }
+            return results;
+        } catch (SQLException throwables) {
+            throw new DBException(throwables.getMessage());
+        }
+    }
 }
