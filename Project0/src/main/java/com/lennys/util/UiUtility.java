@@ -1,4 +1,4 @@
-package com.lennys.ui;
+package com.lennys.util;
 
 public class UiUtility {
 

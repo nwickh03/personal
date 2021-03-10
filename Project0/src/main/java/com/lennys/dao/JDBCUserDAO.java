@@ -11,8 +11,6 @@ import java.sql.SQLException;
 
 public class JDBCUserDAO implements Dao<User,String> {
 
-//TODO: finish crud
-    private LennyLinkedTreeSet<User> copy = new LennyLinkedTreeSet<>();;
 
     @Override
     public void create(User user) throws DBException {

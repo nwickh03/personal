@@ -18,7 +18,7 @@ public class AddCarMenu extends AbstractMenu {
             Integer vin = scan.nextInt();
             if(LotService.getInstance().exists(vin)){
                 System.out.println("car already exists");
-                continue;
+
             }else{
                 try {
                     scan.nextLine();
@@ -31,6 +31,7 @@ public class AddCarMenu extends AbstractMenu {
                     String model = scan.nextLine();
                     LotService.getInstance().addCarToLot(new Car(vin,year,make,model));
                     System.out.println("added car with vin:  " + vin);
+                    return;
                 } catch (InputMismatchException e) {
                     System.out.println("add failed");
                 }

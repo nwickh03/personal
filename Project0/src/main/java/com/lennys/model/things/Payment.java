@@ -1,16 +1,14 @@
 package com.lennys.model.things;
 
-import com.lennys.model.LennyDataModel;
-
-public class Payment extends LennyDataModel implements Comparable<Payment> {
+public class Payment implements Comparable<Payment> {
     private Double balance;
     private Double amount;
     private int termsRemaining;
     public Payment(Offer o){
-        balance = Double.valueOf(o.getTotal() - o.getDownPayment());
+        balance = o.getTotal() - o.getDownPayment();
         amount = balance/o.getTerm();
         termsRemaining = o.getTerm();
-    };
+    }
 
     @Override
     public String toString() {
@@ -24,6 +22,8 @@ public class Payment extends LennyDataModel implements Comparable<Payment> {
         this.termsRemaining = termsRemaining;
     }
 
+    //ToDo: Let the user make payments through the portal, let employees credit cash payments to a users Payment.
+    //ToDo:Larger refactor to allow variable sized payments.
     public void processPayment(){
         balance = balance - amount;
         --termsRemaining;

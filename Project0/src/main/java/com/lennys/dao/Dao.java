@@ -3,8 +3,7 @@ package com.lennys.dao;
 import com.lennys.exception.DBException;
 import com.lennys.util.LennyLinkedTreeSet;
 
-import java.sql.Connection;
-import java.util.Optional;
+
 
 public interface Dao<T extends Comparable<T>,K> {
 

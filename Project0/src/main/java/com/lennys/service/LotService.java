@@ -3,7 +3,6 @@ package com.lennys.service;
 import com.lennys.dao.JDBCOfferDAO;
 import com.lennys.dao.JDBCPaymentDAO;
 import com.lennys.dao.JDBCCarDAO;
-import com.lennys.dao.Dao;
 import com.lennys.exception.DBException;
 import com.lennys.model.things.Car;
 import com.lennys.model.things.Offer;

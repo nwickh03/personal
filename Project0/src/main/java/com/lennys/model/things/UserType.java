@@ -4,5 +4,5 @@ public enum UserType {
 
     Customer,
     Employee,
-    Admin
+    Admin //ToDO:Add admin functionality and make lenny admin/appoint admin account.
 }

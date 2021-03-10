@@ -1,13 +1,11 @@
 package com.lennys.model.people;
 
-import com.azul.crs.com.fasterxml.jackson.databind.exc.InvalidTypeIdException;
-import com.lennys.model.LennyDataModel;
 import com.lennys.model.things.Car;
 import com.lennys.model.things.UserType;
 
 import java.security.InvalidParameterException;
 
-public class User extends LennyDataModel implements Comparable<User>{
+public class User implements Comparable<User>{
 
     private String username;
     private String password;

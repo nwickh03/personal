@@ -1,8 +1,6 @@
 package com.lennys.model.things;
 
-import com.lennys.model.LennyDataModel;
-
-public class Offer extends LennyDataModel implements Comparable<Offer> {
+public class Offer implements Comparable<Offer> {
     private int id;
 
     private Double total;

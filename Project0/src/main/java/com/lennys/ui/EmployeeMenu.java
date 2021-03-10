@@ -1,8 +1,6 @@
 package com.lennys.ui;
 
-import com.lennys.model.people.Employee;
 import com.lennys.model.people.User;
-import com.lennys.model.things.Payment;
 
 import java.util.Scanner;
 
@@ -12,7 +10,8 @@ public class EmployeeMenu extends AbstractMenu{
     @Override
     public void showMenu(Scanner scan) {
 
-        for (int i = 0; i < 3; i++) {
+        boolean inMenu = true;
+       while(inMenu) {
 
 
 
@@ -22,7 +21,8 @@ public class EmployeeMenu extends AbstractMenu{
             System.out.println("2: view payments");
             System.out.println("3: add car");
             System.out.println("4: remove car");
-            Integer answer = scan.nextInt();
+           System.out.println("5: logout");
+            int answer = scan.nextInt();
             scan.nextLine();
             switch (answer){
                 case 1: new LotMenu(activeUser).showMenu(scan);
@@ -32,6 +32,9 @@ public class EmployeeMenu extends AbstractMenu{
                 case 3: new AddCarMenu().showMenu(scan);
                 break;
                 case 4: new RemoveCarMenu().showMenu(scan);
+                break;
+                case 5: return;
+                default:
             }
 
 

@@ -1,12 +1,10 @@
 package com.lennys.model.things;
 
-import com.lennys.model.LennyDataModel;
 import com.lennys.service.LotService;
 
-import javax.annotation.Generated;
 import java.util.Objects;
 
-public class Car extends LennyDataModel implements Comparable<Car> {
+public class Car implements Comparable<Car> {
     private String owner;
     private Integer vin, year, pid;
     private String make, model;

@@ -2,6 +2,7 @@ import com.enterprise.EnterpriseNoAppropriateConstructorFoundException;
 import com.enterprise.annotations.TestMethod;
 import com.enterprise.model.MetaTestData;
 import com.enterprise.model.Status;
+import com.enterprise.results.TestResultsAPI;
 import com.enterprise.util.HashMap;
 import com.enterprise.util.TestDiscovery;
 import com.lennys.dao.JDBCUserDAO;
@@ -19,19 +20,18 @@ public class TestClass<A> {
     }
 
     @TestMethod
-    public  MetaTestData<?,?> testUserDAOReadOne(){
-        MetaTestData<String, Object> tr = new MetaTestData<>();
+    public  MetaTestData<String,A> testUserDAOReadOne(){
+        MetaTestData<String, A> tr = new MetaTestData<>();
         tr.setExpected(new User("lenny","lll","555-867-5309","lenny@lll.com").getPhoneNumber());
         try {
-            tr.setActual(new JDBCUserDAO().read("lenny").getPhoneNumber());
+            tr = (MetaTestData<String, A>) TestResultsAPI.testString("555-867-5309",
+                    new JDBCUserDAO().read("lenny").getPhoneNumber());
         } catch (DBException e) {
             tr.setActual(null);
+            tr.setMessage(e.getMessage());
             tr.setStatus(Status.ERRORED);
             return tr;
         }
-        if(tr.getExpected().equals(tr.getActual())){
-            tr.setStatus(Status.PASSED);
-        }else tr.setStatus(Status.FAILED);
 
         return tr;
     }

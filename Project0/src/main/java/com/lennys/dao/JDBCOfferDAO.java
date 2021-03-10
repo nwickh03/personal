@@ -1,7 +1,6 @@
 package com.lennys.dao;
 
 import com.lennys.exception.DBException;
-import com.lennys.model.things.Car;
 import com.lennys.model.things.Offer;
 import com.lennys.util.LennyLinkedTreeSet;
 import com.lennys.util.db.ConnectionUtil;

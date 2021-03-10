@@ -9,12 +9,14 @@ public class CustomerMenu extends AbstractMenu{
     @Override
     public void showMenu(Scanner scan) {
         System.out.println("Welcome " + activeUser.getUsername());
-        for (int i = 0; i < 3; i++) {
+
+       while(true) {
 
 
             System.out.println("Please select:");
             System.out.println("1: view lot");
             System.out.println("2: my cars");
+            System.out.println("3: logout");
             Integer answer = scan.nextInt();
             scan.nextLine();
             switch (answer){
@@ -22,6 +24,7 @@ public class CustomerMenu extends AbstractMenu{
                     break;
                 case 2: new PrivateLotMenu(activeUser).showMenu(scan);
                     break;
+                case 3: return;
                 default:
             }
 

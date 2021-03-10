@@ -38,15 +38,11 @@ public class UserService {
 
     }
 
-    public void makeUser(String username, String password, String phoneNumber, String email) {
-
-        User newUser = new User(username,password,phoneNumber,email);
-
-    }
 
     public void register(String username, String password, String phoneNumber, String email) throws DBException {
         User newUser = new User(username,password,phoneNumber,email);
         users.create(newUser);
     }
+    //ToDo: Allow the admit to create more employee accounts.
     public void hire() {}
 }
