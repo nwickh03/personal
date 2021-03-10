@@ -3,6 +3,7 @@ package com.lennys.ui;
 import com.lennys.model.things.Car;
 import com.lennys.service.LotService;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class AddCarMenu extends AbstractMenu {
@@ -19,16 +20,20 @@ public class AddCarMenu extends AbstractMenu {
                 System.out.println("car already exists");
                 continue;
             }else{
-                scan.nextLine();
-                System.out.println("enter year");
-                Integer year = scan.nextInt();
-                scan.nextLine();
-                System.out.println("enter make");
-                String make = scan.nextLine();
-                System.out.println("enter model");
-                String model = scan.nextLine();
-                LotService.getInstance().addCarToLot(new Car(vin,year,make,model));
-                System.out.println("added car with vin:  " + vin);
+                try {
+                    scan.nextLine();
+                    System.out.println("enter year");
+                    Integer year = scan.nextInt();
+                    scan.nextLine();
+                    System.out.println("enter make");
+                    String make = scan.nextLine();
+                    System.out.println("enter model");
+                    String model = scan.nextLine();
+                    LotService.getInstance().addCarToLot(new Car(vin,year,make,model));
+                    System.out.println("added car with vin:  " + vin);
+                } catch (InputMismatchException e) {
+                    System.out.println("add failed");
+                }
             }
 
 

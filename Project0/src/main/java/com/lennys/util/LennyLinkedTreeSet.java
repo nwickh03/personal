@@ -176,7 +176,7 @@ public class LennyLinkedTreeSet<T extends Comparable<T>> extends LennyCollection
 //    }
 
     public void inOrderPrint(){
-        innerInOrderPrint(root);
+        if(!this.isEmpty()) innerInOrderPrint(root);
     }
 
     public void innerInOrderPrint(Node<T> root) {

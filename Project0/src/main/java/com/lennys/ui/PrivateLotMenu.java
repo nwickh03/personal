@@ -18,6 +18,9 @@ public class PrivateLotMenu extends AbstractMenu {
     @Override
     public void showMenu(Scanner scan) {
         System.out.println("*** " + activeUser.getUsername() + "'s cars" );
+        if(userLot.isEmpty()){
+            System.out.println("you have no cars");
+        }else
         for (Car c : userLot) {System.out.println(c.toStringWithPayment());}
 
 

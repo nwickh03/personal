@@ -21,14 +21,13 @@ public class LotMenu extends AbstractMenu {
     @Override
     public void showMenu(Scanner scan) {
        LennyLinkedTreeSet<Car> activeLot = LotService.getInstance().viewMainLot();
+
        activeLot.inOrderPrint();
 
+       if(activeLot.isEmpty()){
+           System.out.println("No cars for sale.");
+       }else
         for (int i = 0; i < 3; i++) {
-            Car c = activeLot.getByIntKey(987654321);
-
-            System.out.println(c.getMake());
-
-
             System.out.println("Enter vin to view car details: ");
             int vin = scan.nextInt();
             scan.nextLine();
