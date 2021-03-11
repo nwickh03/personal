@@ -8,6 +8,7 @@ import com.enterprise.util.TestDiscovery;
 import com.lennys.dao.JDBCUserDAO;
 import com.lennys.exception.DBException;
 import com.lennys.model.people.User;
+import com.lennys.model.things.Car;
 
 import java.lang.reflect.Method;
 
@@ -35,16 +36,27 @@ public class TestClass<A> {
 
         return tr;
     }
+    @TestMethod
+    public  MetaTestData<User,User> testObjectEqualityOne(){
+        MetaTestData<User, User> tr = new MetaTestData<>();
+        tr.setExpected(new User("lenny","lll","555-867-5309","lenny@lll.com"));
+        try {
+            tr = (MetaTestData<User, User>) TestResultsAPI.testObject(new User("lenny","lll","555-867-5309","lenny@lll.com"),
+                    new JDBCUserDAO().read("lenny"));
+        } catch (DBException e) {
+            tr.setActual(null);
+            tr.setMessage(e.getMessage());
+            tr.setStatus(Status.ERRORED);
+            return tr;
+        }
+
+        return tr;
+    }
 
 
     public static void main(String[] args) {
         TestDiscovery t = new TestDiscovery();
 
-        try {
-            HashMap<Method,MetaTestData<?,?>> tr = t.runAndStoreTestInformation();
-            System.out.println(tr);
-        } catch (EnterpriseNoAppropriateConstructorFoundException e) {
-            e.printStackTrace();
-        }
+
     }
 }

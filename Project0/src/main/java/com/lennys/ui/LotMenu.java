@@ -6,10 +6,7 @@ import com.lennys.model.things.Car;
 import com.lennys.service.LotService;
 import com.lennys.util.LennyLinkedTreeSet;
 import com.lennys.util.db.ConnectionUtil;
-
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class LotMenu extends AbstractMenu {
@@ -29,10 +26,17 @@ public class LotMenu extends AbstractMenu {
        }else
         for (int i = 0; i < 3; i++) {
             System.out.println("Enter vin to view car details: ");
-            int vin = scan.nextInt();
-            scan.nextLine();
-            if (activeLot.contains(new Car(vin))) {
-                new CarDetailMenu(activeUser, activeLot.getByIntKey(vin)).showMenu(scan);
+            int vin = 0;
+            try {
+                vin = scan.nextInt();
+                scan.nextLine();
+            } catch (InputMismatchException e) {
+                System.out.println("input failure");
+                return;
+            }
+            if(vin == 0) return;
+            if (LotService.getInstance().exists(vin)) {
+                new CarDetailMenu(activeUser, LotService.getInstance().getCar(vin)).showMenu(scan);
                 break;
             }
         }

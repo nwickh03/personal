@@ -2,6 +2,7 @@ package com.lennys.ui;
 
 import com.lennys.model.people.User;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class EmployeeMenu extends AbstractMenu{
@@ -22,9 +23,15 @@ public class EmployeeMenu extends AbstractMenu{
             System.out.println("3: add car");
             System.out.println("4: remove car");
            System.out.println("5: logout");
-            int answer = scan.nextInt();
-            scan.nextLine();
-            switch (answer){
+           int answer = 0;
+           try {
+               answer = scan.nextInt();
+               scan.nextLine();
+           } catch (InputMismatchException e) {
+               System.out.println("input failure");
+               continue;
+           }
+           switch (answer){
                 case 1: new LotMenu(activeUser).showMenu(scan);
                 break;
                 case 2: new EmpPaymentMenu(activeUser).showMenu(scan);
@@ -33,8 +40,8 @@ public class EmployeeMenu extends AbstractMenu{
                 break;
                 case 4: new RemoveCarMenu().showMenu(scan);
                 break;
-                case 5: return;
-                default:
+               default:
+                    return;
             }
 
 

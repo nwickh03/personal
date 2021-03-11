@@ -32,10 +32,10 @@ public class MakeOfferMenu extends AbstractMenu {
                 System.out.println("***Make new offer");
                 System.out.println(car.toStringSimple());
                 System.out.println("Enter total amount offered:");
-                double total = scan.nextInt();
+                double total = scan.nextDouble();
                 scan.nextLine();
                 System.out.println("Enter desired down payment:");
-                int down = scan.nextInt();
+                double down = scan.nextDouble();
                 scan.nextLine();
                 System.out.println("Enter desired term(months):");
                 int term = scan.nextInt();

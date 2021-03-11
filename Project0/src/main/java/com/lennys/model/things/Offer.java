@@ -5,7 +5,7 @@ public class Offer implements Comparable<Offer> {
 
     private Double total;
 
-    private int downPayment;
+    private double downPayment;
 
     private int term;
 
@@ -15,14 +15,14 @@ public class Offer implements Comparable<Offer> {
 
     private OfferStatus status;
 
-    public Offer(Double total, int downPayment, int term, int vin, String username) {
+    public Offer(Double total, double downPayment, int term, int vin, String username) {
         this.total = total;
         this.downPayment = downPayment;
         this.term = term;
         this.vin = vin;
         this.username = username;
     }
-    public Offer(int id, int vin, Double total, int downPayment, int term, String username, int status) {
+    public Offer(int id, int vin, Double total, double downPayment, int term, String username, int status) {
         this(total,downPayment,term,vin,username);
         this.id = id;
         switch (status){
@@ -35,6 +35,15 @@ public class Offer implements Comparable<Offer> {
             default:
                 throw new IllegalStateException("Unexpected value: " + status);
         }
+    }
+
+    public Offer(int id) {
+        this.id = id;
+    }
+
+    public Offer(int id, Integer vin) {
+        this.id = id;
+        this.vin = vin;
     }
 
     public int getId() {
@@ -53,11 +62,11 @@ public class Offer implements Comparable<Offer> {
         this.total = total;
     }
 
-    public int getDownPayment() {
+    public double getDownPayment() {
         return downPayment;
     }
 
-    public void setDownPayment(int downPayment) {
+    public void setDownPayment(double downPayment) {
         this.downPayment = downPayment;
     }
 

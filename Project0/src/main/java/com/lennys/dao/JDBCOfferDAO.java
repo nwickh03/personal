@@ -6,6 +6,7 @@ import com.lennys.util.LennyLinkedTreeSet;
 import com.lennys.util.db.ConnectionUtil;
 
 
+import java.sql.CallableStatement;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -78,8 +79,8 @@ public class JDBCOfferDAO implements Dao<Offer, Integer>{
     }
 
     public void accept(Offer o) throws DBException {
-        String sql = "CALL lenny.accept_offer(?:id,?:vin);";
-        try(PreparedStatement ps = ConnectionUtil.getConnection().prepareStatement(sql)){
+        String sql = "CALL lenny.accept_offer(?,?);";
+        try(CallableStatement ps = ConnectionUtil.getConnection().prepareCall(sql)){
 
             ps.setInt(1, o.getId());
             ps.setInt(2,o.getVin());

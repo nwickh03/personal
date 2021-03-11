@@ -61,10 +61,10 @@ public class LennyLinkedTreeSet<T extends Comparable<T>> extends LennyCollection
 
         if (root.compareTo(e) < 0) {
 
-            innerContain(e, root);
+            innerContain(e, root.right());
         } else if (root.compareTo(e) > 0) {
 
-            innerContain(e, root);
+            innerContain(e, root.left());
         }else return true;
 
         return false;
@@ -213,23 +213,22 @@ class LennyIterator<T extends Comparable<T>> implements Iterator<T> {
         if (ts.isEmpty()) return;
 
        temp = new Comparable[ts.size()];
-
-        itr = innerArrayify(ts.root,i);
         cursor= 0;
         len = 0;
+        itr = innerArrayify(ts.root,0);
     }
 
 
 
 
-    public T[] innerArrayify(Node<T> root, int i) {
+    public T[] innerArrayify(Node<T> root, int ii) {
             if(!(root.left()==null)){
-                innerArrayify(root.left(),i);
+                innerArrayify(root.left(),this.i);
             }
-            temp[i++] = root.getE();
-            this.i++;
+            temp[this.i++] = root.getE();
+
             if(!(root.right()==null)){
-                innerArrayify(root.right(),i);
+                innerArrayify(root.right(),this.i);
             }
             return (T[]) temp;
         }

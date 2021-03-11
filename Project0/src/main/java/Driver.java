@@ -11,7 +11,6 @@ public class Driver {
     public static void main(String[] args){
 
         Scanner scan = new Scanner(System.in);
-        System.out.println("***WELCOME TO LENNY'S LEMON LOT***");
         try {
             ConnectionUtil.getConnection();
         } catch (SQLException throwables) {

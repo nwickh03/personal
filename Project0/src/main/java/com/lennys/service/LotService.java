@@ -124,4 +124,13 @@ public class LotService {
         }
         return null;
     }
+
+    public Car getCar(int vin) {
+        try {
+            return cars.read(vin);
+        } catch (DBException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }
